@@ -1,0 +1,36 @@
+//完成编程练习7，但使用new来为结构分配内存，而不是声明一个结构变量。另外，让程序在请求输入比萨饼公司名称之前输入比萨饼的直径。
+
+
+
+#include<iostream>
+#include<string>
+using namespace std;
+
+
+struct Pizza
+{
+	string company;
+	float diameter;
+	float weight;
+};
+
+int main() {
+	
+	Pizza *p = new Pizza;
+	cout << "Enter the diameter of the pizza:in centimeter:";
+	cin >> p->diameter;
+	cin.get();
+	cout << "Which pizza company dou you want to chose? ";
+	getline(cin, p->company);
+	cout << "Enter the weight of the pizza in gram:";
+	cin >> p->weight;
+
+	cout << "There is the information of the pizza you chosed:\n";
+	cout << "Company:" << p->company << endl;
+	cout << "Diameter:" << p->diameter << "cm " << endl;
+	cout << "Weight:" << p->weight << "g " << endl;
+	
+
+	system("pause");
+	
+}
