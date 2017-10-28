@@ -1,0 +1,48 @@
+
+//完成编程练习6，但使用new来动态分配数组，而不是声明一个包含3个元素的CandyBar数组。
+
+
+
+
+#include<iostream>
+#include<string>
+using namespace std;
+
+
+struct CandyBar
+{
+	string brand;
+	float weight;
+	int calorie;
+};
+
+int main() {
+	
+	int Size;
+	cout << "Enter the number of the struct:";
+	cin >> Size;
+
+	CandyBar *p = new CandyBar[Size];
+
+	p[0].brand = "Mocha Munch"; p[0].weight = 2.3; p[0].calorie = 350;
+	p[1].brand = "Leshi Chips"; p[1].weight = 120.5; p[1].calorie = 500;
+	p[2].brand = "Coca Cola"; p[2].weight = 1000; p[2].calorie = 1500;
+	
+
+	cout << "Information of snack:\n";
+	cout << "Brand:" << p[0].brand << endl;
+	cout << "Weight:" << p[0].weight << endl;
+	cout << "Calorie:" << p[0].calorie << endl << endl;
+
+	cout << "Brand:" << (p+1)->brand << endl;
+	cout << "Weight:" << (p+1)->weight << endl;
+	cout << "Calorie:" << (p+1)->calorie << endl << endl;
+
+	cout << "Brand:" << p[2].brand << endl;
+	cout << "Weight:" << p[2].weight << endl;
+	cout << "Calorie:" << p[2].calorie << endl;
+	
+
+	system("pause");
+	
+}
