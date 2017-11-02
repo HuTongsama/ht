@@ -1,0 +1,25 @@
+//编写一个要求用户输入两个整数的程序。该程序将计算并输出这两个整数之间(包括这两个整数)所有整数的和。这里假设先输入较小的整数。例如，如果用户输入的是2和9
+//，则程序将指出2~9之间所有整数的和为44。
+
+
+
+
+#include<iostream>
+using namespace std;
+
+int main() {
+	
+	int floor, ceil, sum = 0;
+	cout << "Enter the smaller number:";
+	cin >> floor;
+	cout << "Enter the bigger number:";
+	cin >> ceil;
+
+	for (int i = floor; i <= ceil; ++i)
+		sum += i;
+
+	cout << "The sum of the numbers between the two entered numbers is:" << sum << endl;
+
+	system("pause");
+	
+}
