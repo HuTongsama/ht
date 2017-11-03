@@ -1,0 +1,40 @@
+//完成编程练习5，但这一次使用一个二维数组来存储输入————3年中每个月的销售量。程序将报告每年销售量以及三年的总销售量。
+
+
+#include<iostream>
+#include<string>
+#include<array>
+
+using namespace std;
+
+int main() {
+	
+	array<string, 12>month = { "January","February","March","April",
+								"May","June","July","August",
+								"September","October","November","December" };
+	int sale[3][12];
+	int sum[] = { 0,0,0 };
+
+	for (int i = 0; i < 12; ++i)
+	{
+		cout << "How many books did you sell in " << month[i] << "?\n";
+		cout << "First year:";
+		cin >> sale[0][i];
+		cout << "Second year:";
+		cin >> sale[1][i];
+		cout << "Third year:";
+		cin >> sale[2][i];
+		cout << endl;
+		sum[0] += sale[0][i];
+		sum[1] += sale[1][i];
+		sum[2] += sale[2][i];
+	}
+
+	cout << "This first year has sold " << sum[0] << " books named 《C++For Fools》!" << endl;
+	cout << "This second year has sold " << sum[1] << " books named 《C++For Fools》!" << endl;
+	cout << "This third year has sold " << sum[2] << " books named 《C++For Fools》!" << endl;
+
+	cout << sum[0] + sum[1] + sum[2] << " books named 《C++For Fools》 has been sold in three years!" << endl;
+	system("pause");
+	
+}
