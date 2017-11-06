@@ -1,0 +1,40 @@
+//编写一个程序，最多将10个donation值读入到一个double数组中(如果您愿意，也可使用模板类array)。程序遇到非数字输入时将结束输入，并报告这些数字的平均值
+//以及数组中有多少个数字大于平均值。
+
+
+
+
+#include<iostream>
+#include<array>
+
+using namespace std;
+
+int main() {
+	
+	
+	array<double, 10>donations;
+	double sum = 0;
+	int count = 0, avgCount = 0;;
+	double avg;
+	cout << "You could enter 10 numbers at most,"
+		<< "and other input will terminate your input.\n";
+	for (double &i : donations)
+	{
+		if (!(cin >> i))
+			break;
+		sum += i;
+		count++;
+	}
+
+	avg = sum / count;
+
+	for each (double i in donations)
+	{
+		if (i > avg)
+			avgCount++;
+	}
+	cout << "The average is " << avg << '.'
+		<< "and there are " << avgCount << " numbers greater than average" << endl;
+	system("pause");
+	
+}
