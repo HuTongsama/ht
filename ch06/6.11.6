@@ -1,0 +1,69 @@
+//编写一个程序，记录捐助给“维护合法权利团体”的资金。该程序要求用户输入捐献者数目，然后要求用户输入每一个捐献者的姓名和款项。这些信息被储存在一个动态分配
+//的结构数组中。每个结构有两个成员：用来储存姓名的字符数组(或string对象)和用来存储款项的double成员。读取所有的数据后，程序将显示所有捐款超过10000的捐
+//款者的姓名及其捐款数额。该列表前应包含一个标题，指出下面的捐款者是重要捐款人(Grand Patrons)。然后，程序将列出其他的捐款者，该列表要以Patrons开头。
+//如果某种类别没有捐款者，则程序将打印单词“none”。该程序只显示这两种类别，而不进行排序。
+
+
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+struct Patron
+{
+	string name;
+	double donation;
+};
+
+int main() {
+
+
+	int num, grand = 0;
+	cout << "Enter the numbers of patrons:";
+	if (cin >> num&& num>0)
+	{
+		cin.get();
+		Patron *patrons = new Patron[num];
+		for (int i = 0; i < num; ++i)
+		{
+			cout << "Enter the name of the patron:";
+			getline(cin, patrons[i].name);
+			cout << "How many did this patron donate? ";
+			cin >> patrons[i].donation;
+			cin.get();
+			if (patrons[i].donation > 10000)
+				grand++;
+		}
+		cout << "--------Grand Patrons--------\n";
+		if (grand != 0)
+		{
+			for (int i = 0; i < num; ++i)
+			{
+				if (patrons[i].donation > 10000)
+					cout << patrons[i].name <<" donations: "<<patrons[i].donation<< "	" << endl;
+			}
+		}
+		else
+			cout << "	none	" << endl;
+		
+		cout << "--------Patrons--------\n";
+		if ((num - grand) != 0)
+		{
+			for (int i = 0; i < num; ++i)
+			{
+				if (patrons[i].donation < 10000)
+					cout << "	" << patrons[i].name << "		" << endl;
+			}
+		}else
+			cout << "	none	" << endl;
+
+
+	}
+	else
+		cout << "Wrong input!";
+
+	
+
+	system("pause");
+	
+}
