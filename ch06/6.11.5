@@ -1,0 +1,35 @@
+//在Neutronia王国，货币单位是tvarp，收入所得税的计算方式如下：
+//5000 tvarps：不收税
+//5001~15000 tvarps： 10%
+//15001~35000 tvarps： 15%
+//35000 tvarps以上： 20%
+//例如，收入为38000tvarps时，所得税为5000*0.00+10000*0.10+20000*0.15+3000*0.20，即4600 tvarps.请编写一个程序，使用循环来要求用户输入收入，并报
+//告所得税。当用户输入负数或非数字时，循环将结束。
+
+
+#include<iostream>
+
+using namespace std;
+
+int main() {
+
+	double earning,tax;
+	cout << "Enter your earning(enter negative number or non digital to terminate):";
+	while ((cin >> earning)&&(earning >= 0))
+	{
+		if (earning <= 5000)
+			tax = 0.0;
+		else if (earning <= 15000)
+			tax = (earning - 5000)*0.1;
+		else if (earning <= 35000)
+			tax = 10000 * 0.1 + (earning - 15000)*0.15;
+		else
+			tax = 10000 * 0.1 + 20000 * 0.15 + (earning - 35000)*0.2;
+		cout << "Your income tax is " << tax << " tvarps.\n";
+		cout << "Enter your earning(enter negative number or non digital to terminate):";
+	}
+
+
+	system("pause");
+	
+}
