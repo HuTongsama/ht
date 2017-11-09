@@ -1,0 +1,42 @@
+//编写一个程序，它打开一个文本文件，逐个字符的读取该文件，直到到达文件末尾，然后指出该文件中包含多少个字符。
+
+
+
+#include<iostream>
+#include<fstream>
+#include<string>
+#include<cctype>
+#include<cstdlib>
+
+using namespace std;
+
+int main() {
+
+
+	string filename;
+	cout << "Enter name of data file: ";
+	getline(cin, filename);
+
+	ifstream inFile;
+	inFile.open(filename);
+	if (!inFile.is_open())
+	{
+		cout << "fail to open the file!";
+		exit(EXIT_FAILURE);
+	}
+
+	char ch;
+	int count = 0;
+
+	while (inFile.get(ch))
+	{
+		if (isalpha(ch))
+			count++;
+	}
+
+	inFile.close();
+
+	cout << "This file has " << count << " chars" << endl;
+	system("pause");
+	
+}
