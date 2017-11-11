@@ -1,0 +1,78 @@
+//完成编程练习6，但从文件中读取所需的信息。该文件的第一项应为捐款人数，余下的内容应为成对的行。在每一对中，第一行为捐款人姓名，第二行为捐款数额。该文件
+//类似于下面：
+//4
+//Sam Stone
+//2000
+//Freida Flass
+//100500
+//Tammy Tubbs
+//5000
+//Rich Raptor
+//55000
+
+
+#include<iostream>
+#include<fstream>
+#include<string>
+#include<cstdlib>
+
+using namespace std;
+
+struct Patron
+{
+	string name;
+	double donation;
+};
+
+int main() {
+
+
+	string filename;
+	cout << "Enter the name of data file: ";
+	getline(cin, filename);
+	
+	ifstream inFile;
+	int num, grand = 0;
+	inFile.open(filename);
+	if (!inFile.is_open())
+	{
+		cout << "Fail to open the file!";
+		exit(EXIT_FAILURE);
+	}
+	(inFile >> num).get();
+	Patron *patrons = new Patron[num];
+	for (int i = 0; i < num; i++)
+	{
+		getline(inFile, patrons[i].name);
+		(inFile >> patrons[i].donation).get();
+		if (patrons[i].donation > 10000)
+			grand++;
+	}
+
+	cout << "--------Grand Patrons--------\n";
+	if (grand != 0)
+	{
+		for (int i = 0; i < num; ++i)
+		{
+			if (patrons[i].donation > 10000)
+				cout << patrons[i].name << " donations: " << patrons[i].donation << "	" << endl;
+		}
+	}
+	else
+		cout << "	none	" << endl;
+
+	cout << "--------Patrons--------\n";
+	if ((num - grand) != 0)
+	{
+		for (int i = 0; i < num; ++i)
+		{
+			if (patrons[i].donation < 10000)
+				cout << "	" << patrons[i].name << "		" << endl;
+		}
+	}
+	else
+		cout << " none " << endl;
+
+
+	system("pause");
+}
