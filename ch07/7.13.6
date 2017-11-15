@@ -1,0 +1,78 @@
+//编写一个程序，它使用下列函数：
+//Fill_array()将一个double数组的名称和长度作为参数。它提示用户输入double值，并将这些值存储到数组中。当数组被填满或用户输入了非数字时，输入将停止，并
+//返回实际输入了多少个数字。
+//Show_array()将一个double数组的名称和长度作为参数，并显示该数组的内容。
+//Reverse_array()将一个double数组的名称和长度作为参数，并将存储在数组中的值的顺序反转。
+//程序将使用这些函数来填充数组，然后显示数组；反转数组，然后显示数组；反转数组中除第一个和最后一个元素之外的所有元素，然后显示数组。
+
+
+
+#include<iostream>
+
+using namespace std;
+
+
+int Fill_array(double *arr, int len);
+void Show_array(const double *arr, int len);
+void Reverse_array(double *arr, int len);
+
+int main() {
+
+	cout << "Enter the array size(greater than 0):";
+	int num;
+	if (cin >> num&&num > 0)
+	{
+		double *arr = new double[num];
+		int len = Fill_array(arr, num);
+		Show_array(arr, len);
+		Reverse_array(arr, len);
+		Show_array(arr, len);
+		Reverse_array(arr + 1, len - 2);
+		Show_array(arr, len);
+	}
+	else
+		cout << "Wrong input!" << endl;
+	system("pause");
+}
+
+int Fill_array(double *arr, int len)
+{
+	cout << "Enter double numbers (" << len << " at most):";
+	int count = 0;
+	for (int i = 0; i < len; i++)
+	{
+		if (cin >> arr[i])
+		{
+			count++;
+			if(count<len)
+				cout << "Next:";
+		}
+		else
+		{
+			cout << "Finished!" << endl;
+			break;
+		}
+	}
+	return count;
+}
+
+void Show_array(const double *arr, int len)
+{
+	cout << "Elements in array:\n";
+	for (int i = 0; i < len; i++)
+		cout << arr[i] << " ";
+	cout << endl;
+}
+
+void Reverse_array(double *arr, int len)
+{
+	if (len <= 0)
+		return;
+	double *tmp = new double[len];
+	for (int i = 0, j = len - 1; i < len; i++, j--)
+		tmp[i] = arr[j];
+	for (int i = 0; i < len; i++)
+		arr[i] = tmp[i];
+	delete[]tmp;
+	tmp = nullptr;
+}
