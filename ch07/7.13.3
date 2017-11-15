@@ -1,0 +1,60 @@
+//下面是一个结构声明：
+//struct box
+//{
+//  char maker[40];
+//  float height;
+//  float width;
+//  float length;
+//  float volume;
+//};
+//a.编写一个函数，按值传递box结构，并显示每个成员的值。
+//b.编写一个函数，传递box结构的地址，并将volume成员设置为其他三维长度的乘积。
+//c.编写一个使用这两个函数的简单程序。
+
+
+
+#include<iostream>
+
+using namespace std;
+
+struct box
+{
+	char maker[40];
+	float height;
+	float width;
+	float length;
+	float volume;
+};
+
+
+void show(box box);
+void vol(box* box);
+
+int main() {
+	box box1 = { "zhangsan",3,4,5 };
+	box box2 = { "lisi",3.1,2.5,6.7 };
+	box box3 = { "wangwu",7.8,9.1,12.7 };
+
+	box b[] = { box1,box2,box3 };
+	for (int i = 0; i < 3; i++)
+	{
+		vol(&b[i]);
+		show(b[i]);
+	}
+
+	system("pause");
+}
+
+void show(box box)
+{
+	cout << "Maker:" << box.maker << endl;
+	cout << "Height:" << box.height << endl;
+	cout << "Width:" << box.width << endl;
+	cout << "Length:" << box.length << endl;
+	cout << "Volume:" << box.volume << endl;
+}
+
+void vol(box * box)
+{
+	box->volume = box->height*box->width*box->length;
+}
