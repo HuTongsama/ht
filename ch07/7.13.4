@@ -1,0 +1,38 @@
+//许多州的彩票发行机构都使用如程序清单7.4所示的简单彩票玩法的变体。在这些玩法中，玩家从一组被称为域号码(field number)的号码中选择几个。例如，可以从域
+//号码1~47中选择5个号码；还可以从第二个区间(如1~27)选择一个号码(称为特选号码)。要赢得1头奖，必须正确猜中所有的号码。中头奖的几率是选中所有域号码的几率
+//与选中特选号码几率的乘积。例如，在这个例子中，中头奖的几率是从47个号码中正确选取5个号码与从27个号码中正确选择一个号码的几率的乘积。请修改程序清单7.4
+//，以计算中得这种彩票头奖的几率。
+
+
+#include<iostream>
+
+using namespace std;
+
+long double probability(unsigned numbers, unsigned picks);
+
+int main() {
+	double total, choices,special;
+	cout << "Enter the total number of choices on the game card and\n"
+		"the number of picks allowed and the special number:\n";
+	while ((cin >> total >> choices>>special) && choices <= total)
+	{
+		cout << "You have one chance in ";;
+		cout << (1 / special)*probability(total, choices);
+		cout << " of winning.\n";
+		cout << "Next two numbers (q to quit): ";
+	}
+	cout << "bye\n";
+	system("pause");
+}
+
+long double probability(unsigned numbers, unsigned picks)
+{
+	long double result = 1.0;
+	long double n;
+	unsigned p;
+
+	for (n = numbers, p = picks; p > 0; n--, p--)
+		result = result*n / p;
+
+	return 1/result;
+}
