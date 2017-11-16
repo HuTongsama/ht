@@ -1,0 +1,105 @@
+//在不使用array类的情况下完成程序清单7.15所做的工作。编写两个这样的版本：
+//a.使用const char*数组存储表示季度名称的字符串，并使用double数组存储开支。
+//b.使用const char*数组存储表示季度名称的字符串，并使用一个结构，该结构只有一个成员————一个用于存储开支的double数组。这种设计与使用array类的基本设计
+//类似。
+
+
+
+//a：
+
+#include<iostream>
+
+using namespace std;
+
+const int Seasons = 4;
+const char* Sname[] = { "Spring","Summer","Fall","Winter" };
+
+void fill(double *arr);
+void show(double *arr);
+int main() {
+
+	double *arr = new double[Seasons];
+	fill(arr);
+	show(arr);
+  delete []arr;
+  arr=nullptr;
+	system("pause");
+}
+
+void fill(double *arr)
+{
+	for (int i = 0; i < Seasons; i++)
+	{
+		cout << "Enter " << Sname[i] << " expenses: ";
+		cin >> arr[i];
+	}
+}
+
+void show(double *arr)
+{
+	double total = 0.0;
+	cout << "\nEXPENSES\n";
+	for (int i = 0; i < Seasons; i++)
+	{
+		cout << Sname[i] << ": $" << arr[i] << endl;
+		total += arr[i];
+	}
+	cout << "Total Expenses: $" << total << endl;
+}
+
+
+
+
+
+//b:
+
+#include<iostream>
+
+using namespace std;
+
+const int Seasons = 4;
+const char* Sname[] = { "Spring","Summer","Fall","Winter" };
+
+struct Expenses
+{
+	double *arr = new double[Seasons];
+};
+
+void fill(double *arr);
+void show(double *arr);
+int main() {
+
+	Expenses exp;
+	fill(exp.arr);
+	show(exp.arr);
+	delete[]exp.arr;
+	exp.arr = nullptr;
+
+	system("pause");
+}
+
+void fill(double *arr)
+{
+	for (int i = 0; i < Seasons; i++)
+	{
+		cout << "Enter " << Sname[i] << " expenses: ";
+		cin >> arr[i];
+	}
+}
+
+void show(double *arr)
+{
+	double total = 0.0;
+	cout << "\nEXPENSES\n";
+	for (int i = 0; i < Seasons; i++)
+	{
+		cout << Sname[i] << ": $" << arr[i] << endl;
+		total += arr[i];
+	}
+	cout << "Total Expenses: $" << total << endl;
+}
+
+
+
+
+
