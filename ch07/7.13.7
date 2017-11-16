@@ -1,2 +1,75 @@
 //修改程序清单7.7中的3个数组处理函数，使之使用两个指针参数来表示区间。fill_array()函数不返回实际读取了多少个数字，而是返回一个指针，该指针指向最后被
 //填充的位置；其他的函数可以将该指针作为第二个参数，以标识数据结尾。
+
+
+#include<iostream>
+
+using namespace std;
+
+
+double* Fill_array(double *begin,double *end);
+void Show_array(const double *begin, double *end);
+void Reverse_array(double *begin, double *end);
+
+int main() {
+
+	cout << "Enter the array size(greater than 0):";
+	int num;
+	if (cin >> num&&num > 0)
+	{
+		double *arr = new double[num];
+		double* end = Fill_array(arr, arr+num);
+		Show_array(arr, end);
+		Reverse_array(arr, end);
+		Show_array(arr, end);
+		Reverse_array(arr + 1, end - 1);
+		Show_array(arr, end);
+	}
+	else
+		cout << "Wrong input!" << endl;
+	
+	system("pause");
+}
+
+double* Fill_array(double *begin,double *end)
+{
+	cout << "Enter double numbers (" << (end-begin)<< " at most):";
+	double *last = begin;
+	for (auto i = begin; i!=end; i++)
+	{
+		if (cin >>*i)
+		{
+			last = i;
+			if(last!=(end-1))
+				cout << "Next:";
+		}
+		else
+		{
+			cout << "Finished!" << endl;
+			break;
+		}
+	}
+	return last+1;
+}
+
+void Show_array(const double *begin, double *end)
+{
+	cout << "Elements in array:\n";
+	for (auto i = begin; i != end; i++)
+		cout << *i << " ";
+	cout << endl;
+}
+
+void Reverse_array(double *begin, double *end)
+{
+	int len = end - begin;
+	if (len <= 0)
+		return;
+	double *tmp = new double[len];
+	for (int i = 0, j = len - 1; i < len; i++, j--)
+		tmp[i] = begin[j];
+	for (int i = 0; i < len; i++)
+		begin[i] = tmp[i];
+	delete[]tmp;
+	tmp = nullptr;
+}
