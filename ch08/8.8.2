@@ -1,0 +1,44 @@
+//CandyBar结构包含3个成员。第一个成员存储candy bar的品牌名称；第二个成员存储candy bar的重量(可能有小数)；第三个成员存储candy bar的热量(整数)。请
+//编写一个程序。它使用这样一个这样的函数，即将CandyBar的引用、char指针、double和int作为参数，并用最后3个值设置相应的结构成员。最后3个参数的默认值分
+//别为“Millennium Munch”、2.85和350.另外，该程序还包含一个以CandyBar的引用为参数，并显示结构内容的函数。请尽可能使用const。
+
+
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+
+struct CandyBar
+{
+	string brand;
+	double weight;
+	int calorie;
+};
+
+void setInfo(CandyBar &cb, char *name = "Millennium", double w = 2.85, int c = 350);
+void show(const CandyBar &cb);
+int main() {
+	CandyBar *cb = new CandyBar[3];
+	setInfo(cb[0]);
+	setInfo(cb[1], "Cookie", 2.55, 280);
+	setInfo(cb[2], "Oreo", 3.15, 375);
+
+	for (int i = 0; i < 3; i++)
+		show(cb[i]);
+
+	system("pause");
+}
+
+void setInfo(CandyBar & cb, char * name, double w, int c)
+{
+	cb.brand = name;
+	cb.weight = w;
+	cb.calorie = c;
+}
+void show(const CandyBar &cb)
+{
+	cout << "Brand: " << cb.brand << '\t';
+	cout << "Weight: " << cb.weight << '\t';
+	cout << "Calorie: " << cb.calorie << endl;
+}
