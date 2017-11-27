@@ -1,0 +1,65 @@
+//编写模板函数maxn(),它将由一个T类型元素组成的数组和一个表示数组元素数目的整数作为参数，并返回数组中最大的元素。在程序对它进行测试，该程序使用一个包含
+//6个int元素的数组和一个包含4个double元素的数组来调用该函数。程序还包含一个具体化，它将char指针数组和数组中的指针数量作为参数，并返回最长的字符串的地
+//址。如果有多个这样的字符串，则返回其中第一个字符串的地址。使用由5个字符串指针组成的数组来测试该具体化。
+
+
+
+#include<iostream>
+
+using namespace std;
+
+template<typename T>
+T maxn(T *arr, int n);	//template prototype
+
+template<> const char* maxn(const char* arr[], int n);//explicit specialization
+int main() {
+	int ia[6] = { 1,3,5,7,9,6 };
+	double id[4] = { 2.5,1.1,3.6,5.7 };
+
+	const char* cd[5] = { "hi","hello","ok","nice","HELLO" };
+
+	cout << "int: " << maxn(ia, 6) << endl;
+	cout << "double: " << maxn(id, 4) << endl;
+	cout << "char*: " << maxn(cd, 5) << endl;
+	
+	system("pause");
+}
+
+template<typename T>
+T maxn(T * arr, int n)
+{
+	if (n <= 0)
+		return 0;
+	T tmp = arr[0];
+	for (int i = 1; i < n; i++)
+	{
+		if (arr[i] > tmp)
+			tmp = arr[i];
+	}
+	return tmp;
+}
+
+template<>
+const char* maxn(const char* arr[], int n)
+{
+	int *len = new int[n];
+	for (int i = 0; i < n; i++)
+	{
+		//count each string's length
+		int count = 0;
+		for (auto j = arr[i]; *j != '\0'; j++)
+			count++;
+		len[i] = count;
+	}
+	int tmp = len[0];
+	int pos = 0;
+	for (int i = 1; i < n; i++)
+	{
+		if (len[i] > tmp)
+		{
+			tmp = len[i];
+			pos = i;
+		}
+	}
+	return arr[pos];
+}
