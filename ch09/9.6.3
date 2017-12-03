@@ -1,0 +1,42 @@
+//下面是一个结构声明：
+struct chaff
+{
+    char dross[20];
+    int slag;
+};
+//编写一个程序，使用定位new运算符将一个包含两个这种结构的数组放在一个缓冲区中。然后，给结构成员赋值(对于char数组，使用函数strcpy())，并使用一个循环来
+//显示内容。一种方法是想程序清单9.10那样将一个静态数组用作缓冲区；另一种方法是使用常规new运算符来分配缓冲区。
+
+
+#include<iostream>
+#include<string>
+#include<new>
+
+using namespace std;
+
+const int BUF = 512;
+char *buffer = new char[BUF];
+
+struct chaff
+{
+	char dross[20];
+	int slag;
+};
+
+int main() {
+	chaff *ca;
+	ca = new(buffer)chaff[2];
+	strcpy_s(ca[0].dross, "chaff_1");
+	strcpy_s(ca[1].dross, "chaff_2");
+	ca[0].slag = 1;
+	ca[1].slag = 2;
+
+	for (int i = 0; i < 2; i++)
+	{
+		cout << "Dross: " << ca[i].dross << '\t';
+		cout << "Slag: " << ca[i].slag << endl;
+	}
+	
+	cout << "Bye!" << endl;
+	system("pause");
+}
