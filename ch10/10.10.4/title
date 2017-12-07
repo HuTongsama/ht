@@ -1,0 +1,3 @@
+完成第9章的编程练习4，但将Sales结构及相关的函数转换为一个类及其方法。用构造函数替换
+setSales(sales&,double[],int)函数。用构造函数实现setSales(Sales &)方法的交互
+版本。将类保留在名称空间SALES中。
