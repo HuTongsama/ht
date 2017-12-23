@@ -41,17 +41,17 @@ Complex operator~(const Complex & b)
 
 std::ostream & operator<<(std::ostream &os, const Complex & b)
 {
-	os << '(' << b.real << ',' << b.imaginary << ')';
+	os << '(' << b.real << ',' << b.imaginary << "i)";
 	return os;
 }
 
 std::istream & operator>>(std::istream &is, Complex & b)
 {
 	double A, B;
-	std::cout << "Enter real:";
+	std::cout << "real:";
 	if (is >> A)
 	{
-		std::cout << "Enter imaginary:";
+		std::cout << "imaginary:";
 		is >> B;
 		b = Complex(A, B);
 	}
