@@ -28,3 +28,20 @@ int main()
     cout<<"Done!\n";
     return 0;
 }
+注意，必须要重载运算符<<和>>。标准C++使用头文件complex提供了比这个示例更广泛的复数支持，
+因此应将自定义的头文件命名为complex0.h，以免发生冲突。应尽可能使用const。
+下面是该程序的运行情况。
+Enter a complex number (q to quit):
+real: 10
+imaginary: 12
+c is (10,12i)
+complex conjugate is (10,-12i)
+a is (3,4i)
+a + c is (13,16i)
+a - c is (-7,-8i)
+a * c is (-18,76i)
+2 * c is (20,24i)
+Enter a complex number (q to quit):
+real: q
+Done!
+请注意，经过重载后，cin>>c将提示用户输入实数和虚数部分。
