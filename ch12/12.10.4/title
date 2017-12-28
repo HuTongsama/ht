@@ -1,0 +1,26 @@
+请看下面程序清单10.10定义的Stack类的变量：
+//stack.h--class declaration for the stack ADT
+typedef usigned long Item;
+
+class Stack
+{
+ private:
+      enum{MAX = 10};
+      Item *pitems;
+      int size;
+      int top;
+      
+public:
+      Stack(int n = MAX);
+      Stack(const Stack & st);
+      ~Stack();
+      bool isempty()const;
+      bool isfull()const;
+      //push() returns false if stack already is full ,true otherwise
+      bool push(const Item & item);//add item to stack
+      //pop() returns false if stack already is empty,true otherwise
+      bool pop(Item &item);//pop top into item
+      Stack & operator=(const Stack &st);
+};
+正如私有成员表明的，这个类使用动态分配的数组来保存栈项。请重新编写方法，以适应这种新的表
+示法，并编写一个程序来演示所有的方法，包括复制构造函数和赋值运算符。
