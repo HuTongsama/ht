@@ -3,6 +3,8 @@
 #include<ctime>
 #include"queue.h"
 
+using namespace std;
+
 const int MIN_PER_HR = 60;
 //is there a new customer?
 bool newcustomer(double x)
