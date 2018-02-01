@@ -1,0 +1,5 @@
+采用私有继承而不是包含来完成编程练习1。同样，一些typedef可能会有所帮助，另外，您可能还需要
+考虑诸如下面这样的语句的含义：
+    PairArray::operator=(PairArray(ArrayInt(),ArrayInt()));
+    cout<<(const string &)(*this);
+    您设计的类应该可以使用编程练习1中的测试程序进行测试。
