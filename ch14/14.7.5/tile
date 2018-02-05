@@ -1,0 +1,139 @@
+下面是一些类声明：
+#include<iostream>
+#include<string>
+
+class abstr_emp
+{
+private:
+    std::string fanme;
+    std::string lanme;
+    std::string job;
+public:
+    abstr_emp();
+    abstr_emp(const std::string & fn,const std::string & ln,
+            const std::string & j);
+    virtual void ShowAll()const;//labels and shows all data
+    virtual void SetAll();//prompts user for values
+    //just displays first and last name
+    friend std::ostream & operator<<(std::ostream & os,const abstr_emp & e);
+    virtual ~abstr_emp() = 0;
+};
+
+class employee::public abstr_emp
+{
+public:
+     employee();
+     employee(const std::string &fn,cosnt std::string & ln,
+              const std::string & j);
+     virtual void ShowAll()const;
+     virtual void SetAll();
+};
+
+class manager:virtual public abstr_emp
+{
+private:
+    int inchargeof;//number of abstr_emps managed
+protected:
+    int InChargeOf()const{ return inchargeof; }//output
+    int & InChargeOf(){ return inchargeof; }//input
+public:
+    manager();
+    manager(const std::string & fn,const std::string & ln,
+            const std:: string & j,int ico = 0);
+    manager(const abstr_emp & e,int ico);
+    manager(const manager & m);
+    virtual void ShowAll()const;
+    virtual void SetAll();
+};
+
+class fink:virtual public abstr_emp
+{
+private:
+    std::string reportsto;//to whom fink reports
+protected:
+    const std::string ReportsTo()const{ return reportsto; }
+    std::string & ReportsTo(){ return reportsto; }
+public:
+    fink();
+    fink(const std::string & fn,const std::string & ln,
+         const std::string & j,const std::string rpo);
+    fink(const abstr_emp & e,cosnt std::string & rpo);
+    fink(const fink & e);
+    virtual void ShowAll()const;
+    virtual void SetAll();
+};
+
+class highfink:public manager,public fink //management fink
+{
+public:
+    highfink();
+    highfink(const std::string & fn,const std::string & ln
+             const std::string & j,const std::string & rpo,
+             int ico);
+    highfink(const abstr_emp & e,const std::string & rpo,int ico);
+    highfink(const fink & f,int ico);
+    highfink(const manager & m,const std::string & rpo);
+    highfink(const highfink & h);
+    virtual void ShowAll()const;
+    virtual void SetAll();
+};
+
+注意，该类层次结构使用了带虚基类的MI，所以要牢记这种情况下用于构造函数初始化列表的特殊规则。
+还需要注意的是，有些方法被声明为保护的。这可以简化一些highfink方法的代码(例如，如果highfink
+::ShowAll()只是调用fink::ShowAll()和manager::ShowAll(),则它将调用abstr_emp::ShowAll
+()两次)。请提供类方法的实现，并在一个程序中对这些类进行测试。下面是一个小型测试程序：
+
+#include<iostream>
+using namespace std;
+#include"emp.h"
+int main(void)
+{ 
+    employee em("Trip","Harris","Thumper);
+    cout<<em<<endl;
+    em.ShowAll();
+    manager ma("Amorphia","Spindragon","Nuancer",5);
+    cout<<ma<<endl;
+    ma.ShowAll();
+    
+    fink fi("Matt","Oggs","Oiler","Juno Barr");
+    cout<<fi<<endl;
+    fi.ShowAll();
+    highfink hf(ma,"Curly Kew");
+    hf.ShowAll();
+    
+    cout<<"Press a key for next phase:\n";
+    cin.get();
+    highfink hf2;
+    hf2.SetAll();
+    cout<<"Using an abstr_emp * pointer:\n";
+    abstr_emp *tri[4]={&em,&fi,&hf,&hf2};
+    for(int i=0;i<4;i++)
+    {
+        tri[i]->ShowAll();
+    }
+    return 0;
+}
+
+为什么没有定义赋值运算符？
+为什么要将ShowAll()和SetAll()定义为虚的？
+为什么要将abstr_emp定义为虚基类？
+为什么只需要一个operator<<()版本？
+如果使用下面的代码替换程序的结尾部分，将会发生什么情况？
+abstr_emp tri[4]={em,fi,hf,hf2};
+for(int i=0;i<4;i++)
+{
+    tri[i].ShowAll();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
