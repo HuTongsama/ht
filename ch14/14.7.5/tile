@@ -5,8 +5,8 @@
 class abstr_emp
 {
 private:
-	std::string fanme;
-	std::string lanme;
+	std::string fname;
+	std::string lname;
 	std::string job;
 public:
 	abstr_emp();
