@@ -88,7 +88,7 @@ using namespace std;
 #include"emp.h"
 int main(void)
 { 
-    employee em("Trip","Harris","Thumper);
+    employee em("Trip","Harris","Thumper");
     cout<<em<<endl;
     em.ShowAll();
     manager ma("Amorphia","Spindragon","Nuancer",5);
